@@ -113,36 +113,40 @@ function useClickAway(target, handler) {
 }
 
 function useContent(slots, popperNode, content) {
-  let rnd = Math.random();
+  let rnd = [Math.random()];
   let observer = null;
   const hasContent = ref(false);
   onMounted(() => {
-    console.log(rnd + ' onMounted popperNode value', popperNode.value);
-    console.log(rnd + ' onMounted slots', slots);
-    console.log(rnd + ' onMounted content', content);
+    rnd.push('MOUNTED');
+    console.log(rnd, ' onMounted popperNode value', popperNode.value);
+    console.log(rnd, ' onMounted slots', slots);
+    console.log(rnd, ' onMounted content', content);
 
     if (slots.content !== undefined || content.value) {
       hasContent.value = true;
     }
 
-    console.log(rnd + ' before MutationObserver');
+    console.log(rnd, ' before MutationObserver');
     observer = new MutationObserver(checkContent);
-    console.log('after MutationObserver ', observer);
+    console.log(rnd, ' after MutationObserver ', observer);
     observer.observe(popperNode.value, {
       childList: true,
       subtree: true
     });
-    console.log(rnd + ' after observer.observe');
+    console.log(rnd, ' after observer.observe');
+    rnd.push('MOUNTED DONE');
   });
   onBeforeUnmount(() => {
-    console.log(rnd + ' onBeforeUnmount popperNode value', popperNode.value);
+    rnd.push('BEFORE_UNMOUNT');
+    console.log(rnd, ' onBeforeUnmount popperNode value', popperNode.value);
 
     if (observer) {
       observer.disconnect();
       console.log('observer.disconnect()');
     }
 
-    console.log(rnd + ' onBeforeUnmount observer', observer);
+    console.log(rnd, ' onBeforeUnmount observer', observer);
+    rnd.push('BEFORE_UNMOUNT DONE');
   });
   /**
    * Watch the content prop
@@ -2122,7 +2126,7 @@ var script = {
     const props = __props;
 
     useCssVars(_ctx => ({
-      "73e8f494": __props.zIndex
+      "2e7b6298": __props.zIndex
     }));
 
     const slots = useSlots();
@@ -2208,9 +2212,6 @@ var script = {
 
 
     watch([hasContent, disabled], ([hasContent, disabled]) => {
-      console.log("watch hasContent, disabled", hasContent, disabled);
-      console.log("watch isOpen.value", isOpen.value);
-
       if (isOpen.value && (!hasContent || disabled)) {
         close();
       }
@@ -2222,8 +2223,6 @@ var script = {
      */
 
     watch(isOpen, isOpen => {
-      console.log("watch isOpen", isOpen);
-
       if (isOpen) {
         modifiedIsOpen.value = true;
       } else {
@@ -2291,10 +2290,10 @@ var script = {
 
 };
 
-var css_248z = "\n.inline-block[data-v-53389718] {\n    display: inline-block;\n}\n.popper[data-v-53389718] {\n    transition: background 250ms ease-in-out;\n    background: var(--popper-theme-background-color);\n    padding: var(--popper-theme-padding);\n    color: var(--popper-theme-text-color);\n    border-radius: var(--popper-theme-border-radius);\n    border-width: var(--popper-theme-border-width);\n    border-style: var(--popper-theme-border-style);\n    border-color: var(--popper-theme-border-color);\n    box-shadow: var(--popper-theme-box-shadow);\n    z-index: var(--73e8f494);\n}\n.popper[data-v-53389718]:hover,\n  .popper:hover > #arrow[data-v-53389718]::before {\n    background: var(--popper-theme-background-color-hover);\n}\n.inline-block[data-v-53389718] {\n    display: inline-block;\n}\n.fade-enter-active[data-v-53389718],\n  .fade-leave-active[data-v-53389718] {\n    transition: opacity 0.2s ease;\n}\n.fade-enter-from[data-v-53389718],\n  .fade-leave-to[data-v-53389718] {\n    opacity: 0;\n}\n";
+var css_248z = "\n.inline-block[data-v-ce3c384c] {\n    display: inline-block;\n}\n.popper[data-v-ce3c384c] {\n    transition: background 250ms ease-in-out;\n    background: var(--popper-theme-background-color);\n    padding: var(--popper-theme-padding);\n    color: var(--popper-theme-text-color);\n    border-radius: var(--popper-theme-border-radius);\n    border-width: var(--popper-theme-border-width);\n    border-style: var(--popper-theme-border-style);\n    border-color: var(--popper-theme-border-color);\n    box-shadow: var(--popper-theme-box-shadow);\n    z-index: var(--2e7b6298);\n}\n.popper[data-v-ce3c384c]:hover,\n  .popper:hover > #arrow[data-v-ce3c384c]::before {\n    background: var(--popper-theme-background-color-hover);\n}\n.inline-block[data-v-ce3c384c] {\n    display: inline-block;\n}\n.fade-enter-active[data-v-ce3c384c],\n  .fade-leave-active[data-v-ce3c384c] {\n    transition: opacity 0.2s ease;\n}\n.fade-enter-from[data-v-ce3c384c],\n  .fade-leave-to[data-v-ce3c384c] {\n    opacity: 0;\n}\n";
 styleInject(css_248z);
 
-script.__scopeId = "data-v-53389718";
+script.__scopeId = "data-v-ce3c384c";
 
 // IIFE injects install function into component, allowing component
 // to be registered via Vue.use() as well as Vue.component(),

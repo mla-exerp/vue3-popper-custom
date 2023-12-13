@@ -1,34 +1,38 @@
 import { ref, onMounted, onBeforeUnmount, watch } from "vue";
 export default function useContent(slots, popperNode, content) {
-let rnd = Math.random()
+let rnd = [Math.random()]
 
   let observer = null;
   const hasContent = ref(false);
 
   onMounted(() => {
-    console.log(rnd + ' onMounted popperNode value', popperNode.value)
-    console.log(rnd + ' onMounted slots', slots)
-    console.log(rnd + ' onMounted content', content)
+    rnd.push('MOUNTED')
+    console.log(rnd, ' onMounted popperNode value', popperNode.value)
+    console.log(rnd, ' onMounted slots', slots)
+    console.log(rnd, ' onMounted content', content)
     if (slots.content !== undefined || content.value) {
       hasContent.value = true;
     }
-    console.log(rnd + ' before MutationObserver')
+    console.log(rnd, ' before MutationObserver')
     observer = new MutationObserver(checkContent);
-    console.log('after MutationObserver ', observer)
+    console.log(rnd, ' after MutationObserver ', observer)
     observer.observe(popperNode.value, {
       childList: true,
       subtree: true,
     });
-    console.log(rnd + ' after observer.observe')
+    console.log(rnd, ' after observer.observe')
+    rnd.push('MOUNTED DONE')
   });
 
   onBeforeUnmount(() => {
-    console.log(rnd + ' onBeforeUnmount popperNode value', popperNode.value)
+    rnd.push('BEFORE_UNMOUNT')
+    console.log(rnd, ' onBeforeUnmount popperNode value', popperNode.value)
     if (observer) {
       observer.disconnect()
       console.log('observer.disconnect()')
     }
-    console.log(rnd + ' onBeforeUnmount observer', observer)
+    console.log(rnd, ' onBeforeUnmount observer', observer)
+    rnd.push('BEFORE_UNMOUNT DONE')
   });
 
   /**

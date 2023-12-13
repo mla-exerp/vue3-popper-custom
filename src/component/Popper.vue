@@ -263,8 +263,6 @@
    * disabled or without content.
    */
   watch([hasContent, disabled], ([hasContent, disabled]) => {
-    console.log("watch hasContent, disabled", hasContent, disabled);
-    console.log("watch isOpen.value", isOpen.value);
     if (isOpen.value && (!hasContent || disabled)) {
       close();
     }
@@ -276,7 +274,6 @@
    * separate debounced value based on isOpen.
    */
   watch(isOpen, isOpen => {
-    console.log("watch isOpen", isOpen);
     if (isOpen) {
       modifiedIsOpen.value = true;
     } else {
