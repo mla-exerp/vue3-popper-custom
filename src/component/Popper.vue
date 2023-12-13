@@ -181,6 +181,7 @@
   const modifiedIsOpen = ref(false);
 
   onMounted(() => {
+    console.log("Popper onMounted");
     const children = slots.default();
 
     if (children && children.length > 1) {
@@ -188,6 +189,7 @@
         `[Popper]: The <Popper> component expects only one child element at its root. You passed ${children.length} child nodes.`,
       );
     }
+    console.log("Popper onMounted end");
   });
 
   const {
@@ -261,6 +263,8 @@
    * disabled or without content.
    */
   watch([hasContent, disabled], ([hasContent, disabled]) => {
+    console.log("watch hasContent, disabled", hasContent, disabled);
+    console.log("watch isOpen.value", isOpen.value);
     if (isOpen.value && (!hasContent || disabled)) {
       close();
     }
@@ -272,6 +276,7 @@
    * separate debounced value based on isOpen.
    */
   watch(isOpen, isOpen => {
+    console.log("watch isOpen", isOpen);
     if (isOpen) {
       modifiedIsOpen.value = true;
     } else {

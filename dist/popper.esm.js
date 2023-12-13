@@ -2116,7 +2116,7 @@ var script = {
     const props = __props;
 
     useCssVars(_ctx => ({
-      "c81fc0a4": __props.zIndex
+      "73e8f494": __props.zIndex
     }));
 
     const slots = useSlots();
@@ -2125,11 +2125,14 @@ var script = {
     const triggerNode = ref(null);
     const modifiedIsOpen = ref(false);
     onMounted(() => {
+      console.log("Popper onMounted");
       const children = slots.default();
 
       if (children && children.length > 1) {
         return console.error(`[Popper]: The <Popper> component expects only one child element at its root. You passed ${children.length} child nodes.`);
       }
+
+      console.log("Popper onMounted end");
     });
     const {
       arrowPadding,
@@ -2199,6 +2202,9 @@ var script = {
 
 
     watch([hasContent, disabled], ([hasContent, disabled]) => {
+      console.log("watch hasContent, disabled", hasContent, disabled);
+      console.log("watch isOpen.value", isOpen.value);
+
       if (isOpen.value && (!hasContent || disabled)) {
         close();
       }
@@ -2210,6 +2216,8 @@ var script = {
      */
 
     watch(isOpen, isOpen => {
+      console.log("watch isOpen", isOpen);
+
       if (isOpen) {
         modifiedIsOpen.value = true;
       } else {
@@ -2277,10 +2285,10 @@ var script = {
 
 };
 
-var css_248z = "\n.inline-block[data-v-5784ed69] {\n    display: inline-block;\n}\n.popper[data-v-5784ed69] {\n    transition: background 250ms ease-in-out;\n    background: var(--popper-theme-background-color);\n    padding: var(--popper-theme-padding);\n    color: var(--popper-theme-text-color);\n    border-radius: var(--popper-theme-border-radius);\n    border-width: var(--popper-theme-border-width);\n    border-style: var(--popper-theme-border-style);\n    border-color: var(--popper-theme-border-color);\n    box-shadow: var(--popper-theme-box-shadow);\n    z-index: var(--c81fc0a4);\n}\n.popper[data-v-5784ed69]:hover,\n  .popper:hover > #arrow[data-v-5784ed69]::before {\n    background: var(--popper-theme-background-color-hover);\n}\n.inline-block[data-v-5784ed69] {\n    display: inline-block;\n}\n.fade-enter-active[data-v-5784ed69],\n  .fade-leave-active[data-v-5784ed69] {\n    transition: opacity 0.2s ease;\n}\n.fade-enter-from[data-v-5784ed69],\n  .fade-leave-to[data-v-5784ed69] {\n    opacity: 0;\n}\n";
+var css_248z = "\n.inline-block[data-v-53389718] {\n    display: inline-block;\n}\n.popper[data-v-53389718] {\n    transition: background 250ms ease-in-out;\n    background: var(--popper-theme-background-color);\n    padding: var(--popper-theme-padding);\n    color: var(--popper-theme-text-color);\n    border-radius: var(--popper-theme-border-radius);\n    border-width: var(--popper-theme-border-width);\n    border-style: var(--popper-theme-border-style);\n    border-color: var(--popper-theme-border-color);\n    box-shadow: var(--popper-theme-box-shadow);\n    z-index: var(--73e8f494);\n}\n.popper[data-v-53389718]:hover,\n  .popper:hover > #arrow[data-v-53389718]::before {\n    background: var(--popper-theme-background-color-hover);\n}\n.inline-block[data-v-53389718] {\n    display: inline-block;\n}\n.fade-enter-active[data-v-53389718],\n  .fade-leave-active[data-v-53389718] {\n    transition: opacity 0.2s ease;\n}\n.fade-enter-from[data-v-53389718],\n  .fade-leave-to[data-v-53389718] {\n    opacity: 0;\n}\n";
 styleInject(css_248z);
 
-script.__scopeId = "data-v-5784ed69";
+script.__scopeId = "data-v-53389718";
 
 // IIFE injects install function into component, allowing component
 // to be registered via Vue.use() as well as Vue.component(),
