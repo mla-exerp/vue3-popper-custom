@@ -116,7 +116,9 @@ function useContent(slots, popperNode, content) {
   let observer = null;
   const hasContent = ref(false);
   onMounted(() => {
-    console.log('onMounted', popperNode.value, content.value, slots.content, 'hasContent', hasContent.value);
+    console.log('onMounted popperNode value', popperNode.value);
+    console.log('onMounted slots', slots);
+    console.log('onMounted content', content);
 
     if (slots.content !== undefined || content.value) {
       hasContent.value = true;
@@ -132,9 +134,9 @@ function useContent(slots, popperNode, content) {
     console.log('after observer.observe');
   });
   onBeforeUnmount(() => {
-    if (observer) {
-      observer.disconnect();
-    }
+    console.log('onBeforeUnmount');
+
+    observer.disconnect();
   });
   /**
    * Watch the content prop

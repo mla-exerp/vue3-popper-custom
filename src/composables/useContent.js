@@ -4,11 +4,12 @@ export default function useContent(slots, popperNode, content) {
   const hasContent = ref(false);
 
   onMounted(() => {
-    console.log('onMounted', popperNode.value, content.value, slots.content, 'hasContent', hasContent.value)
+    console.log('onMounted popperNode value', popperNode.value)
+    console.log('onMounted slots', slots)
+    console.log('onMounted content', content)
     if (slots.content !== undefined || content.value) {
       hasContent.value = true;
     }
-
     console.log('before MutationObserver')
     observer = new MutationObserver(checkContent);
     console.log('after MutationObserver ')
@@ -20,9 +21,11 @@ export default function useContent(slots, popperNode, content) {
   });
 
   onBeforeUnmount(() => {
+    console.log('onBeforeUnmount')
     if (observer) {
-      observer.disconnect()
     }
+    observer.disconnect()
+
   });
 
   /**

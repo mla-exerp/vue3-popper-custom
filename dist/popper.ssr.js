@@ -270,7 +270,9 @@ var debounce_1 = debounce$1;function useEventListener(target, event, handler) {
   var observer = null;
   var hasContent = vue.ref(false);
   vue.onMounted(function () {
-    console.log('onMounted', popperNode.value, content.value, slots.content, 'hasContent', hasContent.value);
+    console.log('onMounted popperNode value', popperNode.value);
+    console.log('onMounted slots', slots);
+    console.log('onMounted content', content);
 
     if (slots.content !== undefined || content.value) {
       hasContent.value = true;
@@ -286,9 +288,9 @@ var debounce_1 = debounce$1;function useEventListener(target, event, handler) {
     console.log('after observer.observe');
   });
   vue.onBeforeUnmount(function () {
-    if (observer) {
-      observer.disconnect();
-    }
+    console.log('onBeforeUnmount');
+
+    observer.disconnect();
   });
   /**
    * Watch the content prop
