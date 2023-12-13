@@ -124,7 +124,7 @@ function useContent(slots, popperNode, content) {
 
     console.log('before MutationObserver');
     observer = new MutationObserver(checkContent);
-    console.log('after MutationObserver');
+    console.log('after MutationObserver ');
     observer.observe(popperNode.value, {
       childList: true,
       subtree: true
