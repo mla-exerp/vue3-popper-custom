@@ -267,35 +267,36 @@ var debounce_1 = debounce$1;function useEventListener(target, event, handler) {
 
   return useEventListener(window, event, listener);
 }function useContent(slots, popperNode, content) {
+  var rnd = Math.random();
   var observer = null;
   var hasContent = vue.ref(false);
   vue.onMounted(function () {
-    console.log('onMounted popperNode value', popperNode.value);
-    console.log('onMounted slots', slots);
-    console.log('onMounted content', content);
+    console.log(rnd + ' onMounted popperNode value', popperNode.value);
+    console.log(rnd + ' onMounted slots', slots);
+    console.log(rnd + ' onMounted content', content);
 
     if (slots.content !== undefined || content.value) {
       hasContent.value = true;
     }
 
-    console.log('before MutationObserver');
+    console.log(rnd + ' before MutationObserver');
     observer = new MutationObserver(checkContent);
     console.log('after MutationObserver ', observer);
     observer.observe(popperNode.value, {
       childList: true,
       subtree: true
     });
-    console.log('after observer.observe');
+    console.log(rnd + ' after observer.observe');
   });
   vue.onBeforeUnmount(function () {
-    console.log('onBeforeUnmount popperNode value', popperNode.value);
+    console.log(rnd + ' onBeforeUnmount popperNode value', popperNode.value);
 
     if (observer) {
       observer.disconnect();
       console.log('observer.disconnect()');
     }
 
-    console.log('onBeforeUnmount observer', observer);
+    console.log(rnd + ' onBeforeUnmount observer', observer);
   });
   /**
    * Watch the content prop
