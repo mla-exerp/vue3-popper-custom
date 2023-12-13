@@ -280,7 +280,7 @@ var debounce_1 = debounce$1;function useEventListener(target, event, handler) {
 
     console.log('before MutationObserver');
     observer = new MutationObserver(checkContent);
-    console.log('after MutationObserver ');
+    console.log('after MutationObserver ', observer);
     observer.observe(popperNode.value, {
       childList: true,
       subtree: true
