@@ -136,7 +136,12 @@ function useContent(slots, popperNode, content) {
   onBeforeUnmount(() => {
     console.log('onBeforeUnmount popperNode value', popperNode.value);
 
-    observer.disconnect();
+    if (observer) {
+      observer.disconnect();
+      console.log('observer.disconnect()');
+    }
+
+    console.log('onBeforeUnmount observer', observer);
   });
   /**
    * Watch the content prop
