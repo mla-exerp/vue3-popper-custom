@@ -290,7 +290,9 @@ var debounce_1 = debounce$1;function useEventListener(target, event, handler) {
   vue.onBeforeUnmount(function () {
     console.log('onBeforeUnmount popperNode value', popperNode.value);
 
-    observer.disconnect();
+    if (observer) {
+      observer.disconnect();
+    }
   });
   /**
    * Watch the content prop
