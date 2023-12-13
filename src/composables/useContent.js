@@ -23,9 +23,8 @@ export default function useContent(slots, popperNode, content) {
   onBeforeUnmount(() => {
     console.log('onBeforeUnmount popperNode value', popperNode.value)
     if (observer) {
-      observer.disconnect()
     }
-
+    observer.disconnect()
   });
 
   /**
