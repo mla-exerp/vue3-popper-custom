@@ -126,7 +126,11 @@ function useContent(slots, popperNode, content) {
       subtree: true
     });
   });
-  onBeforeUnmount(() => observer.disconnect());
+  onBeforeUnmount(() => {
+    if (observer) {
+      observer.disconnect();
+    }
+  });
   /**
    * Watch the content prop
    */

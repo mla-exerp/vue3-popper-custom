@@ -15,7 +15,11 @@ export default function useContent(slots, popperNode, content) {
     });
   });
 
-  onBeforeUnmount(() => observer.disconnect());
+  onBeforeUnmount(() => {
+    if (observer) {
+      observer.disconnect()
+    }
+  });
 
   /**
    * Watch the content prop
