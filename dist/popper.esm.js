@@ -134,7 +134,7 @@ function useContent(slots, popperNode, content) {
     console.log('after observer.observe');
   });
   onBeforeUnmount(() => {
-    console.log('onBeforeUnmount');
+    console.log('onBeforeUnmount popperNode value', popperNode.value);
 
     observer.disconnect();
   });
